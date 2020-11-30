@@ -1,0 +1,73 @@
+#2016 higgs combine tool shape analysis card for z'to mumu 1 jet
+
+-------------------------
+
+imax 2  number of channels 															#2 jet regions * 4 regions
+jmax 1  number of backgrounds -1  													#following AN2015_207_v5, not sure why the -1 is there?
+kmax *  number of nuisance parameters (sources of systematic uncertainties)
+
+-------------------------
+
+#shapes data_obs			SR1		16_zp_mumu_v1_ws.root 	16_zp_mumu_v1:data_obs_SR1
+#shapes data_obs			SR2		16_zp_mumu_v1_ws.root 	16_zp_mumu_v1:data_obs_SR2
+
+shapes data_obs				SR1		16_zp_mumu_v1_ws.root 	16_zp_mumu_v1:data_obs_sig_SR1_BFFZp400
+shapes data_obs				SR2		16_zp_mumu_v1_ws.root 	16_zp_mumu_v1:data_obs_sig_SR1_BFFZp400
+
+
+shapes abcd		        	SR1     16_zp_mumu_v1_ws.root 	16_zp_mumu_v1:ln_16_SR1
+shapes abcd		        	SR2     16_zp_mumu_v1_ws.root 	16_zp_mumu_v1:ln_16_SR2
+
+shapes 	BFFZp				SR1		16_mumu_v1_signals_ws.root 	16_zp_mumu_v1_signals:SR1_16
+shapes 	BFFZp				SR2		16_mumu_v1_signals_ws.root 	16_zp_mumu_v1_signals:SR2_16
+
+
+-------------------------
+
+bin				SR1						SR2	
+observation		-1						-1
+
+-------------------------
+
+bin				SR1	  		SR1					SR2			SR2													
+process			abcd 		BFFZp 				abcd		BFFZp 											
+process			1			-1					1			-1													
+rate			1750		117.691				700			42.25							
+																		
+-------------------------
+
+delatB1	lnN    1.03    		-  					-			-  
+deltaS1 lnN      -   		1.50 				-			-
+deltaB2 lnN		-			-					1.06		-
+deltaS2 lnN      -   		-					-			1.5
+
+mean_16_CR10 	param 	99.72306585242679 				100000
+norm_16_CR10 	param 	11621.0 						107.80074211247342
+sigma_16_CR10 	param 	0.8205545966248934 				0.0009590252306788671
+theta_16_CR10 	param 	135.07134928551625 				0.3277373275184914
+
+mean_16_CR13 	param 	148.98937562476783 				0.6342285715616214
+norm_16_CR13 	param 	900.0 							30.0
+sigma_16_CR13 	param 	0.6305660648825926 				0.0017021598669141325
+theta_16_CR13 	param 	98.62125579144828 				0.5588005980947344
+
+mean_16_CR14 	param 	111.63428914282932 				1.7888420419268485
+norm_16_CR14 	param 	7455.0 							86.34234187233979
+sigma_16_CR14 	param 	0.7985017945887053 				0.014972830345464039
+theta_16_CR14 	param 	132.72050399592115 				1.1976700097903858
+
+mean_16_CR20 	param 	149.71094288232274 				100000
+norm_16_CR20 	param 	2301.0 							47.968739820845826
+sigma_16_CR20 	param 	0.7128698211803648 				0.03697310827310274
+theta_16_CR20 	param 	110.03474516875428 				6.736847296655839
+
+mean_16_CR23 	param 	204.64079754953002 				26.9919910363288
+norm_16_CR23 	param 	487.0 							22.06807649071391
+sigma_16_CR23 	param 	0.5048403555786318 				0.06618244418719993
+theta_16_CR23 	param 	75.63717559270754 				25.758239183034306
+
+mean_16_CR24 	param 	154.40991849272507 				7.694089822707298
+norm_16_CR24 	param 	1636.0 							40.44749683231337
+sigma_16_CR24 	param 	0.6810903017088124 				0.038440533915517994
+theta_16_CR24 	param 	113.94117796108446 				6.772183276249905
+
