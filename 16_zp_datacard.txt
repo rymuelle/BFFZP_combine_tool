@@ -9,7 +9,7 @@ kmax *  number of nuisance parameters (sources of systematic uncertainties)
 -------------------------
 
 shapes data_obs				SR1		16_zp_mumu_v1_ws.root 	16_zp_mumu_v1:data_obs_sig_SR1_BFFZp350 #MC background with 350 GeV signal added
-shapes data_obs				SR2		16_zp_mumu_v1_ws.root 	16_zp_mumu_v1:data_obs_sig_SR1_BFFZp350	#should "discover" 350 GeV particle 
+shapes data_obs				SR2		16_zp_mumu_v1_ws.root 	16_zp_mumu_v1:data_obs_sig_SR2_BFFZp350	#should "discover" 350 GeV particle 
 
 shapes abcd		        	SR1     16_zp_mumu_v1_ws.root 	16_zp_mumu_v1:ln_16_SR1					#parameterized ABCD pdf for modeling background
 shapes abcd		        	SR2     16_zp_mumu_v1_ws.root 	16_zp_mumu_v1:ln_16_SR2
@@ -68,4 +68,4 @@ sigma_16_CR24 	param 	0.6810903017088124 				0.038440533915517994
 theta_16_CR24 	param 	113.94117796108446 				6.772183276249905
 
 
-mass			param 	300								10											#zP mass param to scan
+#mass			param 	350								10											#zP mass param to scan
