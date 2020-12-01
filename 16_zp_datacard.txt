@@ -2,46 +2,42 @@
 
 -------------------------
 
-imax 2  number of channels 															#2 jet regions * 4 regions
-jmax 1  number of backgrounds -1  													#following AN2015_207_v5, not sure why the -1 is there?
+imax 2  number of channels 																			#1 Jet and 2 Jet SR
+jmax 1  number of backgrounds -1  																	#following AN2015_207_v5, not sure why the -1 is there?
 kmax *  number of nuisance parameters (sources of systematic uncertainties)
 
 -------------------------
 
-#shapes data_obs			SR1		16_zp_mumu_v1_ws.root 	16_zp_mumu_v1:data_obs_SR1
-#shapes data_obs			SR2		16_zp_mumu_v1_ws.root 	16_zp_mumu_v1:data_obs_SR2
+shapes data_obs				SR1		16_zp_mumu_v1_ws.root 	16_zp_mumu_v1:data_obs_sig_SR1_BFFZp350 #MC background with 350 GeV signal added
+shapes data_obs				SR2		16_zp_mumu_v1_ws.root 	16_zp_mumu_v1:data_obs_sig_SR1_BFFZp350	#should "discover" 350 GeV particle 
 
-shapes data_obs				SR1		16_zp_mumu_v1_ws.root 	16_zp_mumu_v1:data_obs_sig_SR1_BFFZp400
-shapes data_obs				SR2		16_zp_mumu_v1_ws.root 	16_zp_mumu_v1:data_obs_sig_SR1_BFFZp400
-
-
-shapes abcd		        	SR1     16_zp_mumu_v1_ws.root 	16_zp_mumu_v1:ln_16_SR1
+shapes abcd		        	SR1     16_zp_mumu_v1_ws.root 	16_zp_mumu_v1:ln_16_SR1					#parameterized ABCD pdf for modeling background
 shapes abcd		        	SR2     16_zp_mumu_v1_ws.root 	16_zp_mumu_v1:ln_16_SR2
 
-shapes 	BFFZp				SR1		16_mumu_v1_signals_ws.root 	16_zp_mumu_v1_signals:SR1_16
+shapes 	BFFZp				SR1		16_mumu_v1_signals_ws.root 	16_zp_mumu_v1_signals:SR1_16		#parameterized Z prime peak
 shapes 	BFFZp				SR2		16_mumu_v1_signals_ws.root 	16_zp_mumu_v1_signals:SR2_16
 
 
 -------------------------
 
 bin				SR1						SR2	
-observation		-1						-1
+observation		-1						-1															
 
 -------------------------
 
 bin				SR1	  		SR1					SR2			SR2													
 process			abcd 		BFFZp 				abcd		BFFZp 											
 process			1			-1					1			-1													
-rate			1750		117.691				700			42.25							
+rate			1750		117.691				700			42.25			
 																		
 -------------------------
 
-delatB1	lnN    1.03    		-  					-			-  
+delatB1	lnN    1.03    		-  					-			-  										#"toy" or made up uncertainties for testing
 deltaS1 lnN      -   		1.50 				-			-
 deltaB2 lnN		-			-					1.06		-
 deltaS2 lnN      -   		-					-			1.5
 
-mean_16_CR10 	param 	99.72306585242679 				100000
+mean_16_CR10 	param 	99.72306585242679 				0.27572827397099076							#params for abcd 
 norm_16_CR10 	param 	11621.0 						107.80074211247342
 sigma_16_CR10 	param 	0.8205545966248934 				0.0009590252306788671
 theta_16_CR10 	param 	135.07134928551625 				0.3277373275184914
@@ -56,7 +52,7 @@ norm_16_CR14 	param 	7455.0 							86.34234187233979
 sigma_16_CR14 	param 	0.7985017945887053 				0.014972830345464039
 theta_16_CR14 	param 	132.72050399592115 				1.1976700097903858
 
-mean_16_CR20 	param 	149.71094288232274 				100000
+mean_16_CR20 	param 	149.71094288232274 				7.142958109591319
 norm_16_CR20 	param 	2301.0 							47.968739820845826
 sigma_16_CR20 	param 	0.7128698211803648 				0.03697310827310274
 theta_16_CR20 	param 	110.03474516875428 				6.736847296655839
@@ -71,3 +67,5 @@ norm_16_CR24 	param 	1636.0 							40.44749683231337
 sigma_16_CR24 	param 	0.6810903017088124 				0.038440533915517994
 theta_16_CR24 	param 	113.94117796108446 				6.772183276249905
 
+
+mass			param 	300								10											#zP mass param to scan
