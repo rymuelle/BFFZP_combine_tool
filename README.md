@@ -1,18 +1,20 @@
 # BFFZP_combine_tool
 
 # make workspace for combine:
+```console
 text2workspace.py 16_zp_datacard.txt -P HiggsAnalysis.CombinedLimit.PhysicsModel:MultiMassZprime --PO zMassRange=150,850  -o 16_zp_workspace.root 
-
+```
 # run multidim fit over r and mass:
-
+```console
 combine -M MultiDimFit 16_zp_workspace.root --algo grid --points 100 --setParameterRanges mass=150,850:r=0,20
-
+```
+```console
 combine -M MultiDimFit 16_zp_workspace.root --algo grid --points 100 --setParameterRanges mass=150,850:r=0,20 --setParameters mass=200:r=1
-
+```
 
 # output:
 
-`
+```console
  <<< Combine >>>
 >>> method used is MultiDimFit
 >>> random number generator seed is 123456
@@ -24,4 +26,4 @@ SimNLL created with 2 channels, 0 generic constraints, 29 fast gaussian constrai
  POI: mass= 349.274 -> [150,850]
  POI: r= 1.73839 -> [0,20]
 Done in 1.84 min (cpu), 1.84 min (real)
-`
+```
