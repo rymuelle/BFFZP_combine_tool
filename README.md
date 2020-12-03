@@ -27,3 +27,21 @@ SimNLL created with 2 channels, 0 generic constraints, 29 fast gaussian constrai
  POI: r= 1.73839 -> [0,20]
 Done in 1.84 min (cpu), 1.84 min (real)
 ```
+
+
+# To make plot:
+```console
+combine 16_zp_datacard.txt -M FitDiagnostics  --plots --cminDefaultMinimizerStrategy 0 -v 3
+```
+
+```console
+combine 16_zp_datacard.txt
+```
+
+combine -M HybridNew 16_zp_mass_350.txt --LHCmode LHC-limits -n .part1B --saveHybridResult --fork 0
+
+combine 16_zp_datacard.txt higgsCombineTest.AsymptoticLimits.mH350.root
+
+combine -M AsymptoticLimits 16_zp_mass_350.txt -m 352 --run expected
+
+combine -M AsymptoticLimits 16_zp_mass_350.txt -m 352 --run blind 

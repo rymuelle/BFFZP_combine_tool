@@ -1,3 +1,4 @@
+dataCardString = '''
 #2016 higgs combine tool shape analysis card for z'to mumu 1 jet
 
 -------------------------
@@ -14,8 +15,8 @@ shapes data_obs				SR2		16_zp_mumu_v1_ws.root 	16_zp_mumu_v1:data_obs_sig_SR2_BF
 shapes abcd		        	SR1     16_zp_mumu_v1_ws.root 	16_zp_mumu_v1:ln_16_SR1					#parameterized ABCD pdf for modeling background
 shapes abcd		        	SR2     16_zp_mumu_v1_ws.root 	16_zp_mumu_v1:ln_16_SR2
 
-shapes 	BFFZp				SR1		16_zp_mumu_v1_ws.root 	16_zp_mumu_v1:sig_SR1_BFFZp350			#hist Z prime peak
-shapes 	BFFZp				SR2		16_zp_mumu_v1_ws.root 	16_zp_mumu_v1:sig_SR2_BFFZp350
+shapes 	BFFZp				SR1		16_zp_mumu_v1_ws.root 	16_zp_mumu_v1:sig_SR1_BFFZp{mass}		#hist z peak
+shapes 	BFFZp				SR2		16_zp_mumu_v1_ws.root 	16_zp_mumu_v1:sig_SR2_BFFZp{mass}
 
 
 -------------------------
@@ -28,7 +29,7 @@ observation		-1						-1
 bin				SR1	  		SR1					SR2			SR2													
 process			abcd 		BFFZp 				abcd		BFFZp 											
 process			1			-1					1			-1													
-rate			1750		-1				700				-1			
+rate			1750		-1					700			-1			
 																		
 -------------------------
 
@@ -68,4 +69,13 @@ sigma_16_CR24 	param 	0.6810903017088124 				0.038440533915517994
 theta_16_CR24 	param 	113.94117796108446 				6.772183276249905
 
 
-#mass			param 	350								10											#zP mass param to scan
+#mass			param 	{mass}								10											#zP mass param to scan
+'''
+
+
+masses = [200,250,200,300,350,400,500]
+
+for mass in masses:
+	kwargs = {"mass":mass}
+	with open('16_zp_mass_{}.txt'.format(mass), 'w') as f:
+		f.write(dataCardString.format(**kwargs))
