@@ -8,15 +8,8 @@ kmax *  number of nuisance parameters (sources of systematic uncertainties)
 
 -------------------------
 
-shapes data_obs				SR1		16_zp_mumu_v1_ws.root 	16_zp_mumu_v1:data_obs_sig_SR1_BFFZp350 #MC background with 350 GeV signal added
-shapes data_obs				SR2		16_zp_mumu_v1_ws.root 	16_zp_mumu_v1:data_obs_sig_SR2_BFFZp350	#should "discover" 350 GeV particle 
 
-shapes abcd		        	SR1     16_zp_mumu_v1_ws.root 	16_zp_mumu_v1:ln_16_SR1					#parameterized ABCD pdf for modeling background
-shapes abcd		        	SR2     16_zp_mumu_v1_ws.root 	16_zp_mumu_v1:ln_16_SR2
-
-shapes 	BFFZp				SR1		16_zp_mumu_v1_ws.root 	16_zp_mumu_v1:sig_SR1_BFFZp350			#hist Z prime peak
-shapes 	BFFZp				SR2		16_zp_mumu_v1_ws.root 	16_zp_mumu_v1:sig_SR2_BFFZp350
-
+shapes * * 16_zp_mumu_v1_ws.root $CHANNEL/$PROCESS
 
 -------------------------
 
@@ -26,16 +19,17 @@ observation		-1						-1
 -------------------------
 
 bin				SR1	  		SR1					SR2			SR2													
-process			abcd 		BFFZp 				abcd		BFFZp 											
+process			abcd 		BFFZp350 			abcd		BFFZp350 											
 process			1			-1					1			-1													
-rate			1750		-1				700				-1			
+rate			1402.9		-1					684.96		-1			
 																		
 -------------------------
 
-delatB1	lnN    1.03    		-  					-			-  										#"toy" or made up uncertainties for testing
-deltaS1 lnN      -   		1.50 				-			-
-deltaB2 lnN		-			-					1.06		-
-deltaS2 lnN      -   		-					-			1.5
+delatB1	lnN    		1.036    	-  					-			-  										#"toy" or made up uncertainties for testing
+deltaS1 lnN     	-   		1.50 				-			-
+deltaB2 lnN			-			-					1.056		-
+deltaS2 lnN     	-   		-					-			1.5
+
 
 mean_16_CR10 	param 	99.72306585242679 				0.27572827397099076							#params for abcd 
 norm_16_CR10 	param 	11621.0 						107.80074211247342
@@ -68,4 +62,4 @@ sigma_16_CR24 	param 	0.6810903017088124 				0.038440533915517994
 theta_16_CR24 	param 	113.94117796108446 				6.772183276249905
 
 
-#mass			param 	350								10											#zP mass param to scan
+
