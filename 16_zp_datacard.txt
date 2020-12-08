@@ -8,8 +8,12 @@ kmax *  number of nuisance parameters (sources of systematic uncertainties)
 
 -------------------------
 
+shapes data_obs * era_16_zp_mumu_v1_ws.root era_16_zp_mumu_v1:$CHANNEL_$PROCESS
 
-shapes * * 16_zp_mumu_v1_ws.root $CHANNEL/$PROCESS
+shapes abcd	SR1     era_16_zp_mumu_v1_ws.root	era_16_zp_mumu_v1:SR1_abcd					#parameterized ABCD pdf for modeling background
+shapes abcd	SR2     era_16_zp_mumu_v1_ws.root	era_16_zp_mumu_v1:SR2_abcd
+
+shapes BFFZp * era_16_zp_mumu_v1_ws.root era_16_zp_mumu_v1:$CHANNEL_$PROCESS$MASS era_16_zp_mumu_v1:$CHANNEL_$PROCESS$MASS_$SYSTEMATIC 
 
 -------------------------
 
@@ -19,7 +23,7 @@ observation		-1						-1
 -------------------------
 
 bin				SR1	  		SR1					SR2			SR2													
-process			abcd 		BFFZp350 			abcd		BFFZp350 											
+process			abcd 		BFFZp 				abcd		BFFZp 											
 process			1			-1					1			-1													
 rate			1402.9		-1					684.96		-1			
 																		
@@ -29,7 +33,7 @@ delatB1	lnN    		1.036    	-  					-			-  										#"toy" or made up uncertaint
 deltaS1 lnN     	-   		1.50 				-			-
 deltaB2 lnN			-			-					1.056		-
 deltaS2 lnN     	-   		-					-			1.5
-
+PDF_ISRFSR_  shape  -           1					-			1									   #uncertainty on background shape and normalization
 
 mean_16_CR10 	param 	99.72306585242679 				0.27572827397099076							#params for abcd 
 norm_16_CR10 	param 	11621.0 						107.80074211247342
@@ -60,6 +64,8 @@ mean_16_CR24 	param 	154.40991849272507 				7.694089822707298
 norm_16_CR24 	param 	1636.0 							40.44749683231337
 sigma_16_CR24 	param 	0.6810903017088124 				0.038440533915517994
 theta_16_CR24 	param 	113.94117796108446 				6.772183276249905
+
+
 
 
 
