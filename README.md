@@ -40,6 +40,12 @@ combine -M AsymptoticLimits 16_zp_mass_200.txt -m 200 --run blind
  hadd higgsCombineTest.AsymptoticLimits_16.root higgsCombineTest.AsymptoticLimits.mH500.root higgsCombineTest.AsymptoticLimits.mH400.root higgsCombineTest.AsymptoticLimits.mH350.root higgsCombineTest.AsymptoticLimits.mH300.root higgsCombineTest.AsymptoticLimits.mH250.root higgsCombineTest.AsymptoticLimits.mH200.root
 ```
 
-higgsCombineTest.AsymptoticLimits_18.root
-higgsCombineTest.AsymptoticLimits_17.root
-higgsCombineTest.AsymptoticLimits_16.root
+# make csvs:
+
+```console 
+python mine_root_limits.py
+```
+
+# make plots
+
+banana plot notebook in main branch, to be integrated here
