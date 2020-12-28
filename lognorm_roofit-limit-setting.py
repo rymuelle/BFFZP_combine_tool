@@ -44,7 +44,7 @@ if era== "16":
 if era== "17": 
     bff_strings  = ["BFFZp200","BFFZp250","BFFZp300","BFFZp350","BFFZp400","BFFZp500",
                 "BFFZp200_1p0","BFFZp350_1p0","BFFZp500_1p0","BFFZp200_0p5","BFFZp350_0p5","BFFZp500_0p5"]
-    filename = '{}/samplesCR_2017_v6_lo_test.root'.format(path)
+    filename = '{}/samplesCR_2017_v6_lo_jerc_sfs.root'.format(path)
 if era== "18": 
     bff_strings  = ["BFFZp200","BFFZp250","BFFZp300","BFFZp350","BFFZp400","BFFZp500",
                 "BFFZp350_1p0","BFFZp500_1p0","BFFZp200_0p5","BFFZp350_0p5","BFFZp500_0p5"]
