@@ -3,76 +3,75 @@ dataCardString = '''
 
 -------------------------
 
-imax 2  number of channels 																			#1 Jet and 2 Jet SR
-jmax 1  number of backgrounds -1  																	#following AN2015_207_v5, not sure why the -1 is there?
+imax 2  number of channels                                      #1 Jet and 2 Jet SR
+jmax 1  number of backgrounds -1                                    #following AN2015_207_v5, not sure why the -1 is there?
 kmax *  number of nuisance parameters (sources of systematic uncertainties)
 
 -------------------------
 
-shapes data_obs * era_{era}_zp_mumu_v1_10pb_ws.root era_{era}_zp_mumu_v1_10pb:$CHANNEL_$PROCESS
+shapes data_obs * era_{era}_zp_mumu_v1_ws.root era_{era}_zp_mumu_v1:$CHANNEL_$PROCESS
 
-shapes abcd	SR1     era_{era}_zp_mumu_v1_10pb_ws.root	era_{era}_zp_mumu_v1_10pb:SR1_abcd					#parameterized ABCD pdf for modeling background
-shapes abcd	SR2     era_{era}_zp_mumu_v1_10pb_ws.root	era_{era}_zp_mumu_v1_10pb:SR2_abcd
+shapes abcd SR1     era_{era}_zp_mumu_v1_ws.root era_{era}_zp_mumu_v1:SR1_abcd          #parameterized ABCD pdf for modeling background
+shapes abcd SR2     era_{era}_zp_mumu_v1_ws.root era_{era}_zp_mumu_v1:SR2_abcd
 
-shapes BFFZp * era_{era}_zp_mumu_v1_10pb_ws.root era_{era}_zp_mumu_v1_10pb:$CHANNEL_$PROCESS{mass} era_{era}_zp_mumu_v1_10pb:$CHANNEL_$PROCESS{mass}_$SYSTEMATIC 
-
--------------------------
-
-bin				SR1						SR2	
-observation		-1						-1															
+shapes BFFZp * era_{era}_zp_mumu_v1_ws.root era_{era}_zp_mumu_v1:$CHANNEL_$PROCESS{mass_post} era_{era}_zp_mumu_v1:$CHANNEL_$PROCESS{mass_post}_$SYSTEMATIC 
 
 -------------------------
 
-bin				SR1	  		SR1					SR2			SR2													
-process			abcd 		BFFZp 				abcd		BFFZp 											
-process			1			-1					1			-1													
-rate			{sr1}		{bffsr1}			{sr2}		{bffsr2}	
-																		
+bin       SR1           SR2 
+observation   -1            -1                              
+
 -------------------------
 
-delatB1	lnN    		{sr1unc}   	-  					-			-  										#"toy" or made up uncertainties for testing
-deltaS1 lnN     	-   		{bffsr1unc} 		-			-
-deltaB2 lnN			-			-					{sr2unc}	-
-deltaS2 lnN     	-   		-					-			{bffsr2unc}
+bin       SR1       SR1         SR2     SR2                         
+process     abcd    BFFZp         abcd    BFFZp                       
+process     1     -1          1     -1                          
+rate      {sr1}   -1      {sr2}   -1  
+                                    
+-------------------------
+lumi lnN -      {lumi_unc}          -     {lumi_unc}     
 
-BTag		shape  -           1					-			1			
-PUID		shape  -           1					-			1			
-PDF_ISRFSR_	shape  -           1					-			1				
-MuonSF		shape  -           1					-			1			
-Pu			shape  -           1					-			1		
-ElectronSF	shape  -           1					-			1				
+delatB1 lnN       {sr1unc}    -           -     -                     #"toy" or made up uncertainties for testing
+deltaS1 lnN       -       {bffsr1unc}     -     -
+deltaB2 lnN     -     -         {sr2unc}  -
+deltaS2 lnN       -       -         -     {bffsr2unc}
 
-mean_{era}_CR10 	param 		{mean_CR10} 		{mean_CR10_unc}			 					#params for abcd 
-norm_{era}_CR10 	param 		{norm_CR10} 		{norm_CR10_unc} 	
-sigma_{era}_CR10 	param 		{sigma_CR10} 		{sigma_CR10_unc} 	
-theta_{era}_CR10 	param 		{theta_CR10} 		{theta_CR10_unc} 	
-mean_{era}_CR13 	param 		{mean_CR13} 		{mean_CR13_unc} 	
-norm_{era}_CR13 	param 		{norm_CR13} 		{norm_CR13_unc} 	
-sigma_{era}_CR13 	param 		{sigma_CR13} 		{sigma_CR13_unc} 	
-theta_{era}_CR13 	param 		{theta_CR13} 		{theta_CR13_unc} 	
-mean_{era}_CR14 	param 		{mean_CR14} 		{mean_CR14_unc} 	
-norm_{era}_CR14 	param 		{norm_CR14} 		{norm_CR14_unc} 	
-sigma_{era}_CR14 	param 		{sigma_CR14} 		{sigma_CR14_unc} 	
-theta_{era}_CR14 	param 		{theta_CR14} 		{theta_CR14_unc} 	
-mean_{era}_CR20 	param 		{mean_CR20} 		{mean_CR20_unc} 	
-norm_{era}_CR20 	param 		{norm_CR20} 		{norm_CR20_unc} 	
-sigma_{era}_CR20 	param 		{sigma_CR20} 		{sigma_CR20_unc} 	
-theta_{era}_CR20 	param 		{theta_CR20} 		{theta_CR20_unc} 	
-mean_{era}_CR23 	param 		{mean_CR23} 		{mean_CR23_unc} 	
-norm_{era}_CR23 	param 		{norm_CR23} 		{norm_CR23_unc} 	
-sigma_{era}_CR23 	param 		{sigma_CR23} 		{sigma_CR23_unc} 	
-theta_{era}_CR23 	param 		{theta_CR23} 		{theta_CR23_unc} 	
-mean_{era}_CR24 	param 		{mean_CR24} 		{mean_CR24_unc} 	
-norm_{era}_CR24 	param 		{norm_CR24} 		{norm_CR24_unc} 	
-sigma_{era}_CR24 	param 		{sigma_CR24} 		{sigma_CR24_unc} 	
-theta_{era}_CR24 	param 		{theta_CR24} 		{theta_CR24_unc} 	
+BTag    shape  -           1          -     1     
+PUID    shape  -           1          -     1     
+PDF_ISRFSR_ shape  -           1          -     1       
+MuonSF    shape  -           1          -     1     
+Pu      shape  -           1          -     1   
+ElectronSF  shape  -           1          -     1       
+jer  shape  -           1          -     1       
+jes  shape  -           1          -     1       
+
+mean_{era}_CR10   param     {mean_CR10}     {mean_CR10_unc}               #params for abcd 
+norm_{era}_CR10   param     {norm_CR10}     {norm_CR10_unc}   
+sigma_{era}_CR10  param     {sigma_CR10}    {sigma_CR10_unc}  
+theta_{era}_CR10  param     {theta_CR10}    {theta_CR10_unc}  
+mean_{era}_CR13   param     {mean_CR13}     {mean_CR13_unc}   
+norm_{era}_CR13   param     {norm_CR13}     {norm_CR13_unc}   
+sigma_{era}_CR13  param     {sigma_CR13}    {sigma_CR13_unc}  
+theta_{era}_CR13  param     {theta_CR13}    {theta_CR13_unc}  
+mean_{era}_CR14   param     {mean_CR14}     {mean_CR14_unc}   
+norm_{era}_CR14   param     {norm_CR14}     {norm_CR14_unc}   
+sigma_{era}_CR14  param     {sigma_CR14}    {sigma_CR14_unc}  
+theta_{era}_CR14  param     {theta_CR14}    {theta_CR14_unc}  
+mean_{era}_CR20   param     {mean_CR20}     {mean_CR20_unc}   
+norm_{era}_CR20   param     {norm_CR20}     {norm_CR20_unc}   
+sigma_{era}_CR20  param     {sigma_CR20}    {sigma_CR20_unc}  
+theta_{era}_CR20  param     {theta_CR20}    {theta_CR20_unc}  
+mean_{era}_CR23   param     {mean_CR23}     {mean_CR23_unc}   
+norm_{era}_CR23   param     {norm_CR23}     {norm_CR23_unc}   
+sigma_{era}_CR23  param     {sigma_CR23}    {sigma_CR23_unc}  
+theta_{era}_CR23  param     {theta_CR23}    {theta_CR23_unc}  
+mean_{era}_CR24   param     {mean_CR24}     {mean_CR24_unc}   
+norm_{era}_CR24   param     {norm_CR24}     {norm_CR24_unc}   
+sigma_{era}_CR24  param     {sigma_CR24}    {sigma_CR24_unc}  
+theta_{era}_CR24  param     {theta_CR24}    {theta_CR24_unc}  
 '''
 
-
-
-
 masses = [200,250,200,300,350,400,500]
-
 
 
 param_dict = {'18': {'SR1': {'BFFZp200': {'err': 0.18075346892158536,
@@ -113,7 +112,8 @@ param_dict = {'18': {'SR1': {'BFFZp200': {'err': 0.18075346892158536,
   'theta_18_CR14': {'error': 0.7871997999926066, 'val': 133.55687511658766},
   'theta_18_CR20': {'error': 6.916339500789121, 'val': 104.76629626299393},
   'theta_18_CR23': {'error': 29.931028811742152, 'val': 57.24637341024129},
-  'theta_18_CR24': {'error': 8.135147250667131, 'val': 105.60956508566596}},
+  'theta_18_CR24': {'error': 8.135147250667131, 'val': 105.60956508566596},
+  'lumi': {'error': 2.5, 'val': 58.88}},
 
   '17': {'SR1': {'BFFZp200': {'err': 0.11345143008109829,
     'val': 15.75677405506322},
@@ -153,7 +153,8 @@ param_dict = {'18': {'SR1': {'BFFZp200': {'err': 0.18075346892158536,
   'theta_17_CR14': {'error': 1.201151386994809, 'val': 132.25851661176273},
   'theta_17_CR20': {'error': 7.267203451034931, 'val': 106.44281687745394},
   'theta_17_CR23': {'error': 53.82991350061019, 'val': 20.896399267847357},
-  'theta_17_CR24': {'error': 10.52156463574832, 'val': 99.96428232689891}},
+  'theta_17_CR24': {'error': 10.52156463574832, 'val': 99.96428232689891},
+  'lumi': {'error': 2.3, 'val': 41.86}},
 
 '16': {'SR1': {'BFFZp200': {'err': 0.11741555576434937,
     'val': 18.160756979852753},
@@ -193,76 +194,100 @@ param_dict = {'18': {'SR1': {'BFFZp200': {'err': 0.18075346892158536,
   'theta_16_CR14': {'error': 1.1976703716380825, 'val': 132.7205039960105},
   'theta_16_CR20': {'error': 6.736837354956634, 'val': 110.03474516749867},
   'theta_16_CR23': {'error': 25.758230407341017, 'val': 75.63717559356218},
-  'theta_16_CR24': {'error': 6.772166427242752, 'val': 113.94117796099624}}}
+  'theta_16_CR24': {'error': 6.772166427242752, 'val': 113.94117796099624},
+  'lumi': {'error': 2.5, 'val': 35.55}}}
 
 era = '17'
 mass = 'BFFZp250'
-def make_kwargs(mass):
-	mass = 'BFFZp{}'.format(mass)
-	kwargs = {
-	"mean_CR10".format(era): param_dict[era]['mean_{}_CR10'.format(era)]['val'],
-	"norm_CR10".format(era): param_dict[era]['norm_{}_CR10'.format(era)]['val'],
-	"sigma_CR10".format(era): param_dict[era]['sigma_{}_CR10'.format(era)]['val'],
-	"theta_CR10".format(era): param_dict[era]['theta_{}_CR10'.format(era)]['val'],
-	"mean_CR13".format(era): param_dict[era]['mean_{}_CR13'.format(era)]['val'],
-	"norm_CR13".format(era): param_dict[era]['norm_{}_CR13'.format(era)]['val'],
-	"sigma_CR13".format(era): param_dict[era]['sigma_{}_CR13'.format(era)]['val'],
-	"theta_CR13".format(era): param_dict[era]['theta_{}_CR13'.format(era)]['val'],
-	"mean_CR14".format(era): param_dict[era]['mean_{}_CR14'.format(era)]['val'],
-	"norm_CR14".format(era): param_dict[era]['norm_{}_CR14'.format(era)]['val'],
-	"sigma_CR14".format(era): param_dict[era]['sigma_{}_CR14'.format(era)]['val'],
-	"theta_CR14".format(era): param_dict[era]['theta_{}_CR14'.format(era)]['val'],
-	"mean_CR20".format(era): param_dict[era]['mean_{}_CR20'.format(era)]['val'],
-	"norm_CR20".format(era): param_dict[era]['norm_{}_CR20'.format(era)]['val'],
-	"sigma_CR20".format(era): param_dict[era]['sigma_{}_CR20'.format(era)]['val'],
-	"theta_CR20".format(era): param_dict[era]['theta_{}_CR20'.format(era)]['val'],
-	"mean_CR23".format(era): param_dict[era]['mean_{}_CR23'.format(era)]['val'],
-	"norm_CR23".format(era): param_dict[era]['norm_{}_CR23'.format(era)]['val'],
-	"sigma_CR23".format(era): param_dict[era]['sigma_{}_CR23'.format(era)]['val'],
-	"theta_CR23".format(era): param_dict[era]['theta_{}_CR23'.format(era)]['val'],
-	"mean_CR24".format(era): param_dict[era]['mean_{}_CR24'.format(era)]['val'],
-	"norm_CR24".format(era): param_dict[era]['norm_{}_CR24'.format(era)]['val'],
-	"sigma_CR24".format(era): param_dict[era]['sigma_{}_CR24'.format(era)]['val'],
-	"theta_CR24".format(era): param_dict[era]['theta_{}_CR24'.format(era)]['val'],
-	"mean_CR10_unc".format(era): param_dict[era]['mean_{}_CR10'.format(era)]["error"],
-	"norm_CR10_unc".format(era): param_dict[era]['norm_{}_CR10'.format(era)]["error"],
-	"sigma_CR10_unc".format(era): param_dict[era]['sigma_{}_CR10'.format(era)]["error"],
-	"theta_CR10_unc".format(era): param_dict[era]['theta_{}_CR10'.format(era)]["error"],
-	"mean_CR13_unc".format(era): param_dict[era]['mean_{}_CR13'.format(era)]["error"],
-	"norm_CR13_unc".format(era): param_dict[era]['norm_{}_CR13'.format(era)]["error"],
-	"sigma_CR13_unc".format(era): param_dict[era]['sigma_{}_CR13'.format(era)]["error"],
-	"theta_CR13_unc".format(era): param_dict[era]['theta_{}_CR13'.format(era)]["error"],
-	"mean_CR14_unc".format(era): param_dict[era]['mean_{}_CR14'.format(era)]["error"],
-	"norm_CR14_unc".format(era): param_dict[era]['norm_{}_CR14'.format(era)]["error"],
-	"sigma_CR14_unc".format(era): param_dict[era]['sigma_{}_CR14'.format(era)]["error"],
-	"theta_CR14_unc".format(era): param_dict[era]['theta_{}_CR14'.format(era)]["error"],
-	"mean_CR20_unc".format(era): param_dict[era]['mean_{}_CR20'.format(era)]["error"],
-	"norm_CR20_unc".format(era): param_dict[era]['norm_{}_CR20'.format(era)]["error"],
-	"sigma_CR20_unc".format(era): param_dict[era]['sigma_{}_CR20'.format(era)]["error"],
-	"theta_CR20_unc".format(era): param_dict[era]['theta_{}_CR20'.format(era)]["error"],
-	"mean_CR23_unc".format(era): param_dict[era]['mean_{}_CR23'.format(era)]["error"],
-	"norm_CR23_unc".format(era): param_dict[era]['norm_{}_CR23'.format(era)]["error"],
-	"sigma_CR23_unc".format(era): param_dict[era]['sigma_{}_CR23'.format(era)]["error"],
-	"theta_CR23_unc".format(era): param_dict[era]['theta_{}_CR23'.format(era)]["error"],
-	"mean_CR24_unc".format(era): param_dict[era]['mean_{}_CR24'.format(era)]["error"],
-	"norm_CR24_unc".format(era): param_dict[era]['norm_{}_CR24'.format(era)]["error"],
-	"sigma_CR24_unc".format(era): param_dict[era]['sigma_{}_CR24'.format(era)]["error"],
-	"theta_CR24_unc".format(era): param_dict[era]['theta_{}_CR24'.format(era)]["error"],
-	'mass':mass,
-	'era':era,
-	'sr1unc':param_dict[era]['SR1']['abcd']['error']/param_dict[era]['SR1']['abcd']['val']+1,
-	'sr2unc':param_dict[era]['SR2']['abcd']['error']/param_dict[era]['SR1']['abcd']['val']+1,
-	'sr1':param_dict[era]['SR1']['abcd']['val'],
-	'sr2':param_dict[era]['SR2']['abcd']['val'],
-	'bffsr1':param_dict[era]['SR1'][mass]['val'],
-	'bffsr2':param_dict[era]['SR2'][mass]['val'],
-	'bffsr1unc':param_dict[era]['SR1'][mass]['err']/param_dict[era]['SR1'][mass]['val']+1,
-	'bffsr2unc':param_dict[era]['SR1'][mass]['err']/param_dict[era]['SR2'][mass]['val']+1,
-	}
-	return kwargs
+def make_kwargs(mass,post):
+  massString = 'BFFZp{}'.format(mass)
+  kwargs = {
+  "mean_CR10".format(era): param_dict[era]['mean_{}_CR10'.format(era)]['val'],
+  "norm_CR10".format(era): param_dict[era]['norm_{}_CR10'.format(era)]['val'],
+  "sigma_CR10".format(era): param_dict[era]['sigma_{}_CR10'.format(era)]['val'],
+  "theta_CR10".format(era): param_dict[era]['theta_{}_CR10'.format(era)]['val'],
+  "mean_CR13".format(era): param_dict[era]['mean_{}_CR13'.format(era)]['val'],
+  "norm_CR13".format(era): param_dict[era]['norm_{}_CR13'.format(era)]['val'],
+  "sigma_CR13".format(era): param_dict[era]['sigma_{}_CR13'.format(era)]['val'],
+  "theta_CR13".format(era): param_dict[era]['theta_{}_CR13'.format(era)]['val'],
+  "mean_CR14".format(era): param_dict[era]['mean_{}_CR14'.format(era)]['val'],
+  "norm_CR14".format(era): param_dict[era]['norm_{}_CR14'.format(era)]['val'],
+  "sigma_CR14".format(era): param_dict[era]['sigma_{}_CR14'.format(era)]['val'],
+  "theta_CR14".format(era): param_dict[era]['theta_{}_CR14'.format(era)]['val'],
+  "mean_CR20".format(era): param_dict[era]['mean_{}_CR20'.format(era)]['val'],
+  "norm_CR20".format(era): param_dict[era]['norm_{}_CR20'.format(era)]['val'],
+  "sigma_CR20".format(era): param_dict[era]['sigma_{}_CR20'.format(era)]['val'],
+  "theta_CR20".format(era): param_dict[era]['theta_{}_CR20'.format(era)]['val'],
+  "mean_CR23".format(era): param_dict[era]['mean_{}_CR23'.format(era)]['val'],
+  "norm_CR23".format(era): param_dict[era]['norm_{}_CR23'.format(era)]['val'],
+  "sigma_CR23".format(era): param_dict[era]['sigma_{}_CR23'.format(era)]['val'],
+  "theta_CR23".format(era): param_dict[era]['theta_{}_CR23'.format(era)]['val'],
+  "mean_CR24".format(era): param_dict[era]['mean_{}_CR24'.format(era)]['val'],
+  "norm_CR24".format(era): param_dict[era]['norm_{}_CR24'.format(era)]['val'],
+  "sigma_CR24".format(era): param_dict[era]['sigma_{}_CR24'.format(era)]['val'],
+  "theta_CR24".format(era): param_dict[era]['theta_{}_CR24'.format(era)]['val'],
+  "mean_CR10_unc".format(era): param_dict[era]['mean_{}_CR10'.format(era)]["error"],
+  "norm_CR10_unc".format(era): param_dict[era]['norm_{}_CR10'.format(era)]["error"],
+  "sigma_CR10_unc".format(era): param_dict[era]['sigma_{}_CR10'.format(era)]["error"],
+  "theta_CR10_unc".format(era): param_dict[era]['theta_{}_CR10'.format(era)]["error"],
+  "mean_CR13_unc".format(era): param_dict[era]['mean_{}_CR13'.format(era)]["error"],
+  "norm_CR13_unc".format(era): param_dict[era]['norm_{}_CR13'.format(era)]["error"],
+  "sigma_CR13_unc".format(era): param_dict[era]['sigma_{}_CR13'.format(era)]["error"],
+  "theta_CR13_unc".format(era): param_dict[era]['theta_{}_CR13'.format(era)]["error"],
+  "mean_CR14_unc".format(era): param_dict[era]['mean_{}_CR14'.format(era)]["error"],
+  "norm_CR14_unc".format(era): param_dict[era]['norm_{}_CR14'.format(era)]["error"],
+  "sigma_CR14_unc".format(era): param_dict[era]['sigma_{}_CR14'.format(era)]["error"],
+  "theta_CR14_unc".format(era): param_dict[era]['theta_{}_CR14'.format(era)]["error"],
+  "mean_CR20_unc".format(era): param_dict[era]['mean_{}_CR20'.format(era)]["error"],
+  "norm_CR20_unc".format(era): param_dict[era]['norm_{}_CR20'.format(era)]["error"],
+  "sigma_CR20_unc".format(era): param_dict[era]['sigma_{}_CR20'.format(era)]["error"],
+  "theta_CR20_unc".format(era): param_dict[era]['theta_{}_CR20'.format(era)]["error"],
+  "mean_CR23_unc".format(era): param_dict[era]['mean_{}_CR23'.format(era)]["error"],
+  "norm_CR23_unc".format(era): param_dict[era]['norm_{}_CR23'.format(era)]["error"],
+  "sigma_CR23_unc".format(era): param_dict[era]['sigma_{}_CR23'.format(era)]["error"],
+  "theta_CR23_unc".format(era): param_dict[era]['theta_{}_CR23'.format(era)]["error"],
+  "mean_CR24_unc".format(era): param_dict[era]['mean_{}_CR24'.format(era)]["error"],
+  "norm_CR24_unc".format(era): param_dict[era]['norm_{}_CR24'.format(era)]["error"],
+  "sigma_CR24_unc".format(era): param_dict[era]['sigma_{}_CR24'.format(era)]["error"],
+  "theta_CR24_unc".format(era): param_dict[era]['theta_{}_CR24'.format(era)]["error"],
+  'mass':mass,
+  'era':era,
+  'sr1unc':param_dict[era]['SR1']['abcd']['error']/param_dict[era]['SR1']['abcd']['val']+1,
+  'sr2unc':param_dict[era]['SR2']['abcd']['error']/param_dict[era]['SR1']['abcd']['val']+1,
+  'sr1':param_dict[era]['SR1']['abcd']['val'],
+  'sr2':param_dict[era]['SR2']['abcd']['val'],
+  'bffsr1':param_dict[era]['SR1'][massString]['val'],
+  'bffsr2':param_dict[era]['SR2'][massString]['val'],
+  'bffsr1unc':param_dict[era]['SR1'][massString]['err']/param_dict[era]['SR1'][massString]['val']+1,
+  'bffsr2unc':param_dict[era]['SR1'][massString]['err']/param_dict[era]['SR2'][massString]['val']+1,
+  'mass_post': "{}{}".format(mass,post),
+  'lumi_unc': param_dict[era]['lumi']['error']/100.+1.
+  }
+  return kwargs
+
+mass_list = [
+  [200,""],
+  [200,"_0p5"],
+  [200,"_1p0"],
+  [350,""],
+  [350,"_0p5"],
+  [350,"_1p0"],
+  [500,""],
+  [500,"_0p5"],
+  [500,"_1p0"],
+  [250,""],
+  [300,""],
+  [400,""],
+  [450,""]]
+
+
 for era in ['16','17','18']:
-	for mass in masses:
-		kwargs = make_kwargs(mass)
-	
-		with open('{}_zp_mass_{}.txt'.format(era,mass), 'w') as f:
-			f.write(dataCardString.format(**kwargs))#
+  print(era)
+  for mass, post in mass_list:
+    try:
+      kwargs = make_kwargs(mass, post)  
+    except:
+      continue
+    print("writing")
+    with open('{}_zp_mass_{}{}.txt'.format(era,mass,post), 'w') as f:
+      f.write(dataCardString.format(**kwargs))#
