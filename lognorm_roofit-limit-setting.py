@@ -1,9 +1,5 @@
 #!/usr/bin/env python
 # coding: utf-8
-
-# In[1]:
-
-
 import os
 import ROOT
 #import torch
@@ -14,33 +10,26 @@ from pprint import pprint
 import matplotlib.pyplot as plt
 import math
 from utils import get_sample_from_infomap, sum_mc_from_infomap,lognormStr,get_fit_params,get_integral_a_error,get_rooDataHist
+import argparse
 
-
-# In[2]:
+#get era
+parser = argparse.ArgumentParser(description='get era')
+parser.add_argument('--era','-e', type=int,default=-1,help='Input era to compute')
+args = parser.parse_args()
 
 
 #target '6.20/06' for combine tool compatibility
-ROOT.gROOT.GetVersion()
+print(ROOT.gROOT.GetVersion())
+print("target '6.20/06' for combine tool compatibility")
 
-
-# In[3]:
-
-
-import os
-os.getcwd()
-
-
-# In[4]:
-
-
-era ="17"
+era = str(args.era)
 
 path = '/afs/cern.ch/work/r/rymuelle/public/nanoAODzPrime/skim_test/bff_nanoaod/plotting'
 
 if era== "16": 
     bff_strings  = ["BFFZp200","BFFZp250","BFFZp300","BFFZp350","BFFZp400","BFFZp500",
                 "BFFZp350_1p0","BFFZp500_1p0","BFFZp350_0p5","BFFZp500_0p5"]
-    filename = '/eos/cms/store/group/phys_exotica/bffZprime/nanoAODskimmed/era_16_zp_mumu_v1_10pb_dbs_ws.root'
+    filename = '{}/samplesCR_2016_v6_lo_jerc_sfs.root'.format(path)
 if era== "17": 
     bff_strings  = ["BFFZp200","BFFZp250","BFFZp300","BFFZp350","BFFZp400","BFFZp500",
                 "BFFZp200_1p0","BFFZp350_1p0","BFFZp500_1p0","BFFZp200_0p5","BFFZp350_0p5","BFFZp500_0p5"]
@@ -48,8 +37,9 @@ if era== "17":
 if era== "18": 
     bff_strings  = ["BFFZp200","BFFZp250","BFFZp300","BFFZp350","BFFZp400","BFFZp500",
                 "BFFZp350_1p0","BFFZp500_1p0","BFFZp200_0p5","BFFZp350_0p5","BFFZp500_0p5"]
-    filename = 'samplesCR_2018_v6_lo_no_kin.root'
-    
+    filename = '{}/samplesCR_2018_v6_lo_jerc_sfs.root'.format(path)
+
+print('opening {}'.format(filename))
 f = ROOT.TFile(filename)
 
 lumi = f.Get('lumi').GetBinContent(1)
