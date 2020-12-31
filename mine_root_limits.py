@@ -6,7 +6,9 @@ files = ['higgsCombineTest.AsymptoticLimits_18.root',
 'higgsCombineTest.AsymptoticLimits_17.root',
 'higgsCombineTest.AsymptoticLimits_16.root',
 'higgsCombineTest.1p0.AsymptoticLimits_17.root',
-'higgsCombineTest.0p5.AsymptoticLimits_17.root']
+'higgsCombineTest.0p5.AsymptoticLimits_17.root',
+'higgsCombineTest.1p0.AsymptoticLimits_18.root',
+'higgsCombineTest.0p5.AsymptoticLimits_18.root']
 
 for fn in files:
 	f = ROOT.TFile(fn)
